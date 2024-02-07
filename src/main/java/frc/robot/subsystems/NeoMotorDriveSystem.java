@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 
+import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,14 +17,14 @@ public class NeoMotorDriveSystem extends SubsystemBase
   private static boolean debugMode = true;
 
   // IDs
-  private static final int frontLeft_ID  = 0;
-  private static final int frontRight_ID = 0;
-  private static final int backLeft_ID   = 0;
-  private static final int backRight_ID  = 0;
+  private static final int frontLeft_ID  = 2;
+  private static final int frontRight_ID = 4;
+  private static final int backLeft_ID   = 3;
+  private static final int backRight_ID  = 5;
 
   // Invert
-  private static final boolean invertLeft  = false;
-  private static final boolean invertRight = true;
+  private static final boolean invertLeft  = true;
+  private static final boolean invertRight = false;
 
   // Motors
   private CANSparkMax m_frontLeftMotor;
@@ -168,13 +169,13 @@ public class NeoMotorDriveSystem extends SubsystemBase
   }
 
   //TODO: Inputs Curves, Deadzones
-  public void DriveArcade(double joyXAxis, double joyYAxis)
+  public void driveArcade(double joyXAxis, double joyYAxis)
   {
     m_drive.arcadeDrive(joyXAxis, joyYAxis);
   }
 
 
-  public void DriveTank(double joyXAxis, double joyYAxis)
+  public void driveTank(double joyXAxis, double joyYAxis)
   {
     m_drive.tankDrive(joyXAxis, joyYAxis);
   }
