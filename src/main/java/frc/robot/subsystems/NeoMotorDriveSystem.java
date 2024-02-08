@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import java.lang.Math;
+
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -81,18 +83,16 @@ public class NeoMotorDriveSystem extends SubsystemBase
     
   }
 
-
   ///METHODS///
   //TODO: Inputs Curves, Deadzones
   public void driveArcade(double speed, double rotation)
   {
-    m_drive.arcadeDrive(speed, rotation);
+    m_drive.arcadeDrive(speed*Math.abs(speed)*0.5, rotation*Math.abs(rotation)*0.5);
   }
-
 
   public void driveTank(double speedLeft, double speedRight)
   {
-    m_drive.tankDrive(speedLeft, speedRight);
+    m_drive.tankDrive(speedLeft*Math.abs(speedLeft)*0.5, speedRight*Math.abs(speedRight)*0.5);
   }
 
 
