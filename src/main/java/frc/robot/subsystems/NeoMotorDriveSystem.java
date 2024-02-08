@@ -38,19 +38,7 @@ public class NeoMotorDriveSystem extends SubsystemBase
   // Differential Drive
   private DifferentialDrive m_drive;
 
-
-
-  //Double check access modifiers
-  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, setPoint;
-
-  // kP = 0;
-  // kI = 0;
-  // kD = 0;
-  // kIz = 0;
-  // kFF = 0.000215;
-  // kMaxOutput = 1;
-  // kMinOutput = -1;
-  // maxRPM = 150;
+  
 
   public NeoMotorDriveSystem()
   {
