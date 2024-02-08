@@ -42,8 +42,8 @@ public class RobotContainer {
     m_NeoMotorDriveSystem.setDefaultCommand(
         Commands.run(
             () ->
-                m_NeoMotorDriveSystem.driveTank(
-                    m_driverController.getLeftY(), m_driverController.getRightY()),
+                m_NeoMotorDriveSystem.driveArcade(
+                    m_driverController.getLeftY(), m_driverController.getRightX()),
             m_NeoMotorDriveSystem));
 
     // m_tankDriveSubsystem.setDefaultCommand(
