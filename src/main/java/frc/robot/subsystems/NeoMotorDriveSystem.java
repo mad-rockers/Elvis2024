@@ -90,9 +90,9 @@ public class NeoMotorDriveSystem extends SubsystemBase
   }
 
 
-  public void driveTank(double joyXAxis, double joyYAxis)
+  public void driveTank(double speedLeft, double speedRight)
   {
-    m_drive.tankDrive(joyXAxis, joyYAxis);
+    m_drive.tankDrive(speedLeft, speedRight);
   }
 
 
