@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import java.lang.Math;
+
 public class NeoMotorDriveSystem extends SubsystemBase 
 {
 
@@ -38,7 +40,8 @@ public class NeoMotorDriveSystem extends SubsystemBase
   // Differential Drive
   private DifferentialDrive m_drive;
 
-  
+  // Drive Type
+  private int driveType = 0;  
 
   public NeoMotorDriveSystem()
   {
@@ -84,18 +87,55 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
   ///METHODS///
   //TODO: Inputs Curves, Deadzones
+
+  public void changeDrive(){
+    if(driveType == 0){
+      driveType = 1;
+      return;
+    }
+    if(driveType == 1){
+      driveType = 0;
+      return;
+    }else{
+      driveType = 0;
+      return;
+    }
+  }
+
+  public double[] deadBand(double[] bits, double band){
+    double[] viable = new double[bits.length];
+    int ind = 0;
+    for(double num:bits){
+      if(Math.abs(num)-band > 0){
+        viable[ind] = num;
+      }
+    }
+    return viable;
+  }
+
+  public void driveAll(double speedNspeedLeft, double rotation, double speedRight){
+    double[] vals = {speedNspeedLeft,rotation,speedRight};
+    vals = deadBand(vals,0.1);
+    if(driveType == 0){
+      m_drive.arcadeDrive(vals[0]*Math.abs(vals[0])*0.5, vals[1]*Math.abs(vals[1])*0.5); //speedNspeedLeft, rotation
+    }
+    if(driveType == 1){
+      m_drive.tankDrive(vals[0]*Math.abs(vals[0])*0.5, vals[2]*Math.abs(vals[2])*0.5); //speedNspeedLeft, speedRight
+    }
+  }
+
+/*
   public void driveArcade(double speed, double rotation)
   {
-    m_drive.arcadeDrive(speed, rotation);
+    m_drive.arcadeDrive(speed*Math.abs(speed)*0.5, rotation*Math.abs(rotation)*0.5);
   }
 
 
   public void driveTank(double speedLeft, double speedRight)
   {
-    m_drive.tankDrive(speedLeft, speedRight);
+    m_drive.tankDrive(speedLeft*Math.abs(speedLeft)*0.5, speedRight*Math.abs(speedRight)*0.5);
   }
-
-
+*/
 
   ///DEBUG INFO///
   @Override

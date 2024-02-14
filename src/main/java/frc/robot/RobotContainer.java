@@ -46,15 +46,22 @@ public class RobotContainer {
     m_NeoMotorDriveSystem.setDefaultCommand(
         Commands.run(
             () ->
-                m_NeoMotorDriveSystem.driveArcade(
-                    m_driverController.getLeftY(), m_driverController.getRightX()),
+                m_NeoMotorDriveSystem.driveAll(
+                    m_driverController.getLeftY(), m_driverController.getRightX(), m_driverController.getRightY()),
             m_NeoMotorDriveSystem));
+
+    // m_tankDriveSubsystem.setDefaultCommand(
+    //    Commands.run(
+    //        () ->
+    //          m_NeoMotorDriveSystem.driveArcade(
+    //                m_driverController.getLeftY(), m_driverController.getRightX()),
+    //        m_NeoMotorDriveSystem));
 
     // m_tankDriveSubsystem.setDefaultCommand(
     //     Commands.run(
     //         () ->
-    //             m_tankDriveSubsystem.driveArcade(
-    //                 m_driverController.getLeftY(), m_driverController.getLeftX()),
+    //             m_tankDriveSubsystem.driveTank(
+    //                 m_driverController.getLeftY(), m_driverController.getRightY()),
     //         m_tankDriveSubsystem));
 
     // m_tankDriveSubsystem.setDefaultCommand(
@@ -83,6 +90,7 @@ public class RobotContainer {
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
+    m_driverController.a().onTrue(Commands.runOnce(() -> m_NeoMotorDriveSystem.changeDrive(), m_NeoMotorDriveSystem));
   }
 
   /**
