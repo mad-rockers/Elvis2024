@@ -40,8 +40,9 @@ public class NeoMotorDriveSystem extends SubsystemBase
   // Differential Drive
   private DifferentialDrive m_drive;
 
-  // Drive Type
+  // Drive Variables
   private int driveType = 0;  
+  private double bandLimit = 0.1;
 
   public NeoMotorDriveSystem()
   {
@@ -81,9 +82,11 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
     ///DIFFERENTIAL DRIVE///
     m_drive = new DifferentialDrive(m_frontLeftMotor, m_frontRightMotor);
+
+    //Initiates SmartDashboard Drive Type
+    SmartDashboard.putString("Drive Type", "ArcadeDrive");
     
   }
-
 
   ///METHODS///
   //TODO: Inputs Curves, Deadzones
@@ -91,13 +94,16 @@ public class NeoMotorDriveSystem extends SubsystemBase
   public void changeDrive(){
     if(driveType == 0){
       driveType = 1;
+      SmartDashboard.putString("Drive Type", "TankDrive");
       return;
     }
     if(driveType == 1){
       driveType = 0;
+      SmartDashboard.putString("Drive Type", "ArcadeDrive");
       return;
     }else{
       driveType = 0;
+      SmartDashboard.putString("Drive Type", "ArcadeDrive");
       return;
     }
   }
@@ -115,7 +121,7 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
   public void driveAll(double speedNspeedLeft, double rotation, double speedRight){
     double[] vals = {speedNspeedLeft,rotation,speedRight};
-    vals = deadBand(vals,0.1);
+    vals = deadBand(vals,bandLimit); //Change this in drive variables
     if(driveType == 0){
       m_drive.arcadeDrive(vals[0]*Math.abs(vals[0])*0.5, vals[1]*Math.abs(vals[1])*0.5); //speedNspeedLeft, rotation
     }
