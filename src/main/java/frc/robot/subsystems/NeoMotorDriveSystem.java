@@ -44,7 +44,7 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
   // Drive Variables
   private int driveType = 0;  
-  private double bandLimit = 0.1;
+  private double deadBandLimit = 0.1;
 
   public NeoMotorDriveSystem()
   {
@@ -116,6 +116,7 @@ public class NeoMotorDriveSystem extends SubsystemBase
     for(double num:bits){
       if(Math.abs(num)-band > 0){
         viable[ind] = num;
+        ind++;
       }
     }
     return viable;
@@ -123,7 +124,7 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
   public void driveAll(double speedNspeedLeft, double rotation, double speedRight){
     double[] vals = {speedNspeedLeft,rotation,speedRight};
-    vals = deadBand(vals,bandLimit); //Change this in drive variables
+    vals = deadBand(vals,deadBandLimit); //Change this in drive variables
     if(driveType == 0){
       m_drive.arcadeDrive(vals[0]*Math.abs(vals[0])*0.5, vals[1]*Math.abs(vals[1])*0.5); //speedNspeedLeft, rotation
     }
@@ -132,17 +133,17 @@ public class NeoMotorDriveSystem extends SubsystemBase
     }
   }
 
-/*
-  public void driveArcade(double speed, double rotation)
-  {
-    m_drive.arcadeDrive(speed*Math.abs(speed)*0.5, rotation*Math.abs(rotation)*0.5);
-  }
+// 
+//   public void driveArcade(double speed, double rotation)
+//   {
+//     m_drive.arcadeDrive(speed*Math.abs(speed)*0.5, rotation*Math.abs(rotation)*0.5);
+//   }
 
-  public void driveTank(double speedLeft, double speedRight)
-  {
-    m_drive.tankDrive(speedLeft*Math.abs(speedLeft)*0.5, speedRight*Math.abs(speedRight)*0.5);
-  }
-*/
+//   public void driveTank(double speedLeft, double speedRight)
+//   {
+//     m_drive.tankDrive(speedLeft*Math.abs(speedLeft)*0.5, speedRight*Math.abs(speedRight)*0.5);
+//   }
+// 
 
   ///DEBUG INFO///
   @Override
