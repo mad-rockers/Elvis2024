@@ -14,10 +14,10 @@ public class NeoMotorDriveSystem extends SubsystemBase
   private static boolean debugMode = true;
 
   // IDs
-  private static final int frontLeft_ID  = 2;
-  private static final int frontRight_ID = 4;
-  private static final int backLeft_ID   = 3;
-  private static final int backRight_ID  = 5;
+  private static final int frontLeft_ID  = 1;
+  private static final int frontRight_ID = 3;
+  private static final int backLeft_ID   = 2;
+  private static final int backRight_ID  = 4;
 
   // Invert
   private static final boolean invertLeft  = true;
