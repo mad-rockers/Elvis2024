@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LimeLightCameraSubSystem;
 import frc.robot.subsystems.NeoMotorDriveSystem;
 
 /**
@@ -26,6 +27,7 @@ public class RobotContainer {
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final NeoMotorDriveSystem m_NeoMotorDriveSystem = new NeoMotorDriveSystem();
+  private final LimeLightCameraSubSystem m_cameraSubsystem = new LimeLightCameraSubSystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
