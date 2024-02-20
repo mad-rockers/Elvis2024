@@ -31,7 +31,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("Software Version:", "Elvis 2024: Limelight Test");
     System.out.println("Software Version: LimeLight Test (Feb 17 2024)");
     m_robotContainer = new RobotContainer();
-    m_robotContainer = new RobotContainer();
   }
 
   /**

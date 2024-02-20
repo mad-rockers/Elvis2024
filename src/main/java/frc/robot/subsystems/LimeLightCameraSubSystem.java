@@ -31,26 +31,32 @@ public class LimeLightCameraSubSystem extends SubsystemBase
         return m_ty.getDouble(0.0);
     }
 
+    //Distance side to side from the camera
     public double getXDistOffset() {
         return m_targetPoseRS.getDoubleArray(new double[6])[0];
     }
 
+    //Distance up and down from the camera
     public double getYDistOffset() {
         return m_targetPoseRS.getDoubleArray(new double[6])[1];
     }
 
+    //Depth away from the camera
     public double getZDistOffset() {
         return m_targetPoseRS.getDoubleArray(new double[6])[2];
     }
 
+    //Pitch of the april tag
     public double getXRotation() {
         return m_targetPoseRS.getDoubleArray(new double[6])[3];
     }
 
+    //Yaw of the april tag
     public double getYRotation() {
         return m_targetPoseRS.getDoubleArray(new double[6])[4];
     }
 
+    //Roll of the april tag
     public double getZRotation() {
         return m_targetPoseRS.getDoubleArray(new double[6])[5];
     }
