@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkPIDController;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,6 +35,13 @@ public class NeoMotorDriveSystem extends SubsystemBase
   private final RelativeEncoder m_frontRightEncoder;
   private final RelativeEncoder m_backLeftEncoder;
   private final RelativeEncoder m_backRightEncoder;
+
+  // PID Controllers
+  private final SparkPIDController m_frontLeftPID;
+  private final SparkPIDController m_frontRightPID;
+  private final SparkPIDController m_backLeftPID;
+  private final SparkPIDController m_backRightPID;
+
 
 
   // Differential Drive
@@ -66,7 +75,6 @@ public class NeoMotorDriveSystem extends SubsystemBase
     m_frontLeftMotor.setInverted(invertLeft);
     m_frontRightMotor.setInverted(invertRight);
 
-
     ///ENCODERS///
     m_frontLeftEncoder  = m_frontLeftMotor.getEncoder();
     m_frontRightEncoder = m_frontRightMotor.getEncoder();
@@ -74,7 +82,11 @@ public class NeoMotorDriveSystem extends SubsystemBase
     m_backRightEncoder  = m_backRightMotor.getEncoder();
 
 
-
+    //PID Controllers
+    m_frontLeftPID  = m_frontLeftMotor.getPIDController();
+    m_frontRightPID = m_frontRightMotor.getPIDController();
+    m_backLeftPID   = m_backLeftMotor.getPIDController();
+    m_backRightPID  = m_backRightMotor.getPIDController();
 
     ///DIFFERENTIAL DRIVE///
     m_drive = new DifferentialDrive(m_frontLeftMotor, m_frontRightMotor);
@@ -88,13 +100,27 @@ public class NeoMotorDriveSystem extends SubsystemBase
   {
     m_drive.arcadeDrive(speed, rotation);
   }
-
-
   public void driveTank(double speedLeft, double speedRight)
   {
     m_drive.tankDrive(speedLeft, speedRight);
   }
-
+  public void setMotorRPM(double rpm)
+  {
+    double setPoint = rpm;
+    m_frontLeftPID.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+    m_frontRightPID.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+  }
+  public void setRotationRPM(double rpm)
+  {
+    double setPoint = rpm;
+    m_frontLeftPID.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+    m_frontRightPID.setReference(-setPoint, CANSparkMax.ControlType.kVelocity);
+  }
+  // Method to stop all motors
+  public void stopMotors() {
+    m_frontLeftMotor.set(0);
+    m_frontRightMotor.set(0);
+  }
 
 
   ///DEBUG INFO///

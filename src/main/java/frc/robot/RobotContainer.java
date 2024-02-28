@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AlignmentApproachCommand;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLightCameraSubSystem;
@@ -85,6 +86,7 @@ public class RobotContainer {
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
+    m_driverController.y().onTrue(new AlignmentApproachCommand(m_NeoMotorDriveSystem, m_cameraSubsystem));
   }
 
   /**
