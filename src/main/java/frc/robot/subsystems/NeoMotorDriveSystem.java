@@ -135,11 +135,11 @@ public class NeoMotorDriveSystem extends SubsystemBase
     // vals = deadBand(vals,deadBandLimit); //Change deadBandLimit in drive variables
     double[] vals = {singleDeadBand(speedNspeedLeft, deadBandLimit),singleDeadBand(rotation, deadBandLimit),singleDeadBand(speedRight, deadBandLimit)}; //individual function calling
     if(driveType == 0){
-      m_drive.arcadeDrive(vals[0]*Math.abs(vals[0])*0.25, vals[1]*Math.abs(vals[1])*0.25); //speedNspeedLeft, rotation
+      m_drive.arcadeDrive(vals[0]*Math.abs(vals[0])*0.40, vals[1]*Math.abs(vals[1])*0.40); //speedNspeedLeft, rotation
       return;
     }
     if(driveType == 1){
-      m_drive.tankDrive(vals[0]*Math.abs(vals[0])*0.25, vals[2]*Math.abs(vals[2])*0.25); //speedNspeedLeft, speedRight
+      m_drive.tankDrive(vals[0]*Math.abs(vals[0])*0.40, vals[2]*Math.abs(vals[2])*0.40); //speedNspeedLeft, speedRight
       return;
     }
   }
