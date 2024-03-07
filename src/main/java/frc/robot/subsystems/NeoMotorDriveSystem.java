@@ -93,10 +93,6 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
     ///DIFFERENTIAL DRIVE///
     m_drive = new DifferentialDrive(m_frontLeftMotor, m_frontRightMotor);
-
-    //Initiates SmartDashboard Drive Type
-    SmartDashboard.putString("Drive Type", "ArcadeDrive");
-    
   }
   ///INTERNAL METHODS///
   private double applyDeadBand(double inp)
@@ -150,8 +146,8 @@ public class NeoMotorDriveSystem extends SubsystemBase
     double currentRightRotations = m_frontRightEncoder.getPosition();
 
     //Distances in inches
-    double leftDistance = (currentLeftRotations-prevLeftRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN;
-    double rightDistance = (currentRightRotations-prevRightRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN;
+    double leftDistance = (currentLeftRotations-prevLeftRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / RobotConstants.DRIVE_GEARBOX_RATIO;
+    double rightDistance = (currentRightRotations-prevRightRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / RobotConstants.DRIVE_GEARBOX_RATIO;
     
     //Reset Counts
     prevLeftRotations = currentLeftRotations;
