@@ -5,13 +5,20 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.NeoMotorDriveSystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
-public final class Autos {
+public final class Autos 
+{
   /** Example static factory for an autonomous command. */
-  public static Command exampleAuto(ExampleSubsystem subsystem) {
+  public static Command exampleAuto(ExampleSubsystem subsystem) 
+  {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
+  }
+  public static Command moveBack(NeoMotorDriveSystem neoMotorDriveSystem)
+  {
+    return new AutoDrive(neoMotorDriveSystem, 0.35, 2);
   }
 
   private Autos() {
