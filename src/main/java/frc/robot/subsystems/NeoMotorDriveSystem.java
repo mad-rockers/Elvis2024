@@ -141,18 +141,13 @@ public class NeoMotorDriveSystem extends SubsystemBase
 
   public double getDistanceTraveled()
   {
-    /*
-     * Gearbox ratio is 8.45 to 1
-     * 50/14 * 45/19
-     */
-
     //Get number of rotations
     double currentLeftRotations = m_frontLeftEncoder.getPosition();
     double currentRightRotations = m_frontRightEncoder.getPosition();
 
     //Distances in inches
-    double leftDistance = (currentLeftRotations-prevLeftRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / ((50/14) * (45/19));
-    double rightDistance = (currentRightRotations-prevRightRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / ((50/14) * (45/19));
+    double leftDistance = (currentLeftRotations-prevLeftRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / RobotConstants.DRIVE_GEARBOX_RATIO;
+    double rightDistance = (currentRightRotations-prevRightRotations) * 2 * Math.PI * RobotConstants.WHEEL_RADIUS_IN / RobotConstants.DRIVE_GEARBOX_RATIO;
     
     //Reset Counts
     prevLeftRotations = currentLeftRotations;

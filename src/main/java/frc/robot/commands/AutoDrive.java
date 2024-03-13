@@ -12,7 +12,7 @@ public class AutoDrive extends Command
     private double moveSpeed;
     private double currentDistance_in = 0;
     private double targetDistance_in;
-    private int isTargetForward;
+    private int isTargetForward;    //sign value
 
     private boolean reachedTarget = false;
 
@@ -29,13 +29,15 @@ public class AutoDrive extends Command
     {
         m_NeoMotorDriveSystem.resetDistanceTraveled();
         isTargetForward = (int)(Math.abs(targetDistance_in)/targetDistance_in);   //Gets the sign of the distance
-        targetDistance_in = targetDistance_in*isTargetForward;    //Absolutes the distance
+        targetDistance_in = Math.abs(targetDistance_in);
+
+        moveSpeed *= isTargetForward * -1;  //Speed is inverted
     }
 
     @Override
     public void execute() 
     {
-        currentDistance_in += m_NeoMotorDriveSystem.getDistanceTraveled();
+        currentDistance_in += Math.abs(m_NeoMotorDriveSystem.getDistanceTraveled());
         m_NeoMotorDriveSystem.driveArcade(moveSpeed, 0);
 
         if (currentDistance_in > targetDistance_in)
