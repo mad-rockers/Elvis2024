@@ -10,7 +10,7 @@ public class AutoDrive extends Command
 
     private NeoMotorDriveSystem m_NeoMotorDriveSystem;
     private double moveSpeed;
-    private double currentDistance_in;
+    private double currentDistance_in = 0;
     private double targetDistance_in;
     private int isTargetForward;
 

@@ -18,7 +18,7 @@ public final class Autos
   }
   public static Command moveBack(NeoMotorDriveSystem neoMotorDriveSystem)
   {
-    return new AutoDrive(neoMotorDriveSystem, 0.35, 2);
+    return new AutoDrive(neoMotorDriveSystem, 0.7, 2);
   }
 
   private Autos() {
